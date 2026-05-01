@@ -225,6 +225,7 @@
         <div class="presets" id="presets"></div>
       </div>
 
+      
       <div class="card">
         <div class="card-head"><div class="card-title">Longitudinal Profile</div><div class="card-tag">W &nbsp;←→&nbsp; E</div></div>
         <svg class="profile-svg" id="profile" viewBox="0 0 420 230" preserveAspectRatio="xMidYMid meet"></svg>
@@ -720,29 +721,7 @@ function stopPlay(){
 $playBtn.addEventListener('click', () => { isPlaying ? stopPlay() : startPlay(); });
 
 /* ============ X-RAY / SOLID TOGGLE ============ */
-const $xrayBtn  = document.getElementById('view-xray');
-const $solidBtn = document.getElementById('view-solid');
-function setXray(on){
-  if (on){
-    embMat.opacity = 0.22;
-    embMat.depthWrite = false;
-    road.material.opacity = 0.55;
-    road.material.depthWrite = false;
-    embEdges.visible = true;
-  } else {
-    embMat.opacity = 1.0;
-    embMat.depthWrite = true;
-    road.material.opacity = 1.0;
-    road.material.depthWrite = true;
-    embEdges.visible = false;
-  }
-  embMat.needsUpdate = true;
-  road.material.needsUpdate = true;
-  $xrayBtn.classList.toggle('active', on);
-  $solidBtn.classList.toggle('active', !on);
-}
-$xrayBtn.addEventListener('click',  () => setXray(true));
-$solidBtn.addEventListener('click', () => setXray(false));
+
 
 /* ============ PROFILE SVG ============ */
 const NS = 'http://www.w3.org/2000/svg';
