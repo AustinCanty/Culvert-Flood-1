@@ -10,7 +10,7 @@
   <style>
     :root {
       --bg: #0a0f17;
-      --bg-2: #113F5D;
+      --bg-2: #0e1622;
       --panel: #121b28;
       --panel-2: #172234;
       --border: #1c2738;
@@ -194,7 +194,7 @@
     </div>
 
     <aside id="controls">
-      <div class=" accent">
+      <div class="card accent">
         <div class="card-head"><div class="card-title">West Water Surface</div><div class="card-tag">TIDAL SIDE</div></div>
         <div class="readout">
           <div class="readout-value" id="wl-value">−0.73</div>
@@ -220,8 +220,7 @@
         </div>
       </div>
 
-  
-      
+
       <div class="card">
         <div class="card-head"><div class="card-title">Longitudinal Profile</div><div class="card-tag">W &nbsp;←→&nbsp; E</div></div>
         <svg class="profile-svg" id="profile" viewBox="0 0 420 230" preserveAspectRatio="xMidYMid meet"></svg>
@@ -421,7 +420,7 @@ embEdges.position.copy(emb.position);
 embEdges.renderOrder = 4;
 scene.add(embEdges);
 
-/* ---- Road surface ---- */Fca
+/* ---- Road surface ---- */
 const road = new THREE.Mesh(
   new THREE.BoxGeometry(CFG.road.halfWidthX*2, CFG.road.thickness, CFG.road.halfLengthZ*2),
   new THREE.MeshStandardMaterial({
@@ -717,7 +716,29 @@ function stopPlay(){
 $playBtn.addEventListener('click', () => { isPlaying ? stopPlay() : startPlay(); });
 
 /* ============ X-RAY / SOLID TOGGLE ============ */
-
+const $xrayBtn  = document.getElementById('view-xray');
+const $solidBtn = document.getElementById('view-solid');
+function setXray(on){
+  if (on){
+    embMat.opacity = 0.22;
+    embMat.depthWrite = false;
+    road.material.opacity = 0.55;
+    road.material.depthWrite = false;
+    embEdges.visible = true;
+  } else {
+    embMat.opacity = 1.0;
+    embMat.depthWrite = true;
+    road.material.opacity = 1.0;
+    road.material.depthWrite = true;
+    embEdges.visible = false;
+  }
+  embMat.needsUpdate = true;
+  road.material.needsUpdate = true;
+  $xrayBtn.classList.toggle('active', on);
+  $solidBtn.classList.toggle('active', !on);
+}
+$xrayBtn.addEventListener('click',  () => setXray(true));
+$solidBtn.addEventListener('click', () => setXray(false));
 
 /* ============ PROFILE SVG ============ */
 const NS = 'http://www.w3.org/2000/svg';
