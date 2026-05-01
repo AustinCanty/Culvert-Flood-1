@@ -194,7 +194,7 @@
     </div>
 
     <aside id="controls">
-      <div class="card accent">
+      <div class=" accent">
         <div class="card-head"><div class="card-title">West Water Surface</div><div class="card-tag">TIDAL SIDE</div></div>
         <div class="readout">
           <div class="readout-value" id="wl-value">−0.73</div>
@@ -220,11 +220,7 @@
         </div>
       </div>
 
-      <div class="card">
-        <div class="card-head"><div class="card-title">Snapshot Scenarios</div><div class="card-tag">CLICK TO JUMP</div></div>
-        <div class="presets" id="presets"></div>
-      </div>
-
+  
       
       <div class="card">
         <div class="card-head"><div class="card-title">Longitudinal Profile</div><div class="card-tag">W &nbsp;←→&nbsp; E</div></div>
@@ -425,7 +421,7 @@ embEdges.position.copy(emb.position);
 embEdges.renderOrder = 4;
 scene.add(embEdges);
 
-/* ---- Road surface ---- */
+/* ---- Road surface ---- */Fca
 const road = new THREE.Mesh(
   new THREE.BoxGeometry(CFG.road.halfWidthX*2, CFG.road.thickness, CFG.road.halfLengthZ*2),
   new THREE.MeshStandardMaterial({
